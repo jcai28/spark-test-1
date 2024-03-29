@@ -6,3 +6,13 @@ services:
       - "8080:8080"
       - "7077:7077"
     hostname: spark-master
+
+  spark-worker:
+    image: spark-worker
+    ports:
+      - "8081:8081"
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    depends_on:
+      - spark-master
