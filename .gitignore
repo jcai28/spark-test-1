@@ -1,0 +1,37 @@
+# Ignore IntelliJ IDEA project files
+.idea/
+
+# Ignore compiled Java class files
+*.class
+
+# Ignore Maven build directory
+target/
+
+# Ignore Eclipse project files
+.classpath
+.project
+.settings/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore system-specific files
+*.iml
+*.ipr
+*.iws
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore compiled binaries
+bin/
+lib/
+
+# Ignore large files
+*.jar
+*.zip
+
+# Ignore user-specific files
+.gradle/
+.vscode/
