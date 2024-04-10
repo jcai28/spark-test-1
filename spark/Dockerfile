@@ -21,22 +21,16 @@ ENV IJAVA_CLASSPATH=/opt/spark/jars/*
 COPY --from=builder /spark-listener/target/*.jar /opt/spark/jars/
 
 
-# COPY spark-defaults.conf /opt/spark/conf/
-# # Copy the configuration files and the entrypoint script
-COPY entrypoint.sh /opt/spark/
+COPY spark-defaults.conf /opt/spark/conf/
+# Copy the configuration files and the entrypoint script
+COPY start-master.sh ./start-worker.sh /opt/spark/
 
 USER root
 # Make the entrypoint script executable
-RUN chmod +x /opt/spark/entrypoint.sh
+RUN chmod +x /opt/spark/start-master.sh
+RUN chmod +x /opt/spark/start-worker.sh
 # # Change the ownership of the JAR file to the Spark user
 # RUN chown spark:spark /opt/spark/jars/listeners-1.0-SNAPSHOT-jar-with-dependencies.jar
-
-# Expose the Spark Master UI port
-EXPOSE 8080
-
-# Expose the Spark Master port
-EXPOSE 7077
-
 # Set the PATH environment variable
 ENV PATH=/opt/spark/bin:$PATH
 

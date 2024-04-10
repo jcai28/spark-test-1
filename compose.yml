@@ -1,18 +1,21 @@
 version: '3'
 services:
   spark-master:
-    image: spark-master
+    image: spark-image
     ports:
       - "8080:8080"
       - "7077:7077"
     hostname: spark-master
+    entrypoint: ["./start-master.sh"]  # Specify entry point for master
 
   spark-worker:
-    image: spark-worker
+    image: spark-image
     ports:
       - "8081:8081"
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
+    entrypoint: ["./start-worker.sh"]  # Specify entry point for worker
     depends_on:
       - spark-master
+
