@@ -65,8 +65,8 @@ COPY --from=builder /spark-listener/target/*.jar /opt/spark/jars/
 
 COPY spark-defaults.conf /opt/spark/conf/
 # Copy the configuration files and the entrypoint script
-COPY start-master.sh ./start-worker.sh /opt/spark/
-
+COPY start-master.sh ./start-worker.sh /opt/spark/ 
+COPY samplesql.py createdb.py /opt/spark/ 
 USER root
 # Make the entrypoint script executable
 RUN chmod +x /opt/spark/start-master.sh
